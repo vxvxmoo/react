@@ -2,8 +2,14 @@ import React from "react";
 import Profile from "./Profile";
 
 export default function AppProfile() {
+  const handleClick = (event) => {
+    console.log(event);
+    alert("버튼이 클릭댐");
+  };
+
   return (
     <>
+      <button onClick={handleClick}>Button</button>
       <Profile
         image="https://i.namu.wiki/i/geGngQMnvmK2g3wuKU4O1uNs8Ix1HXQULk9PrnT57lHOlU4AxL9qsNCYXOOY9DIqPWtXnphq8G6NzCcvzv-ppQ.webp"
         name="chiikawa"
