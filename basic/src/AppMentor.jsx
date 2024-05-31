@@ -9,34 +9,6 @@ export default function AppMentor(props) {
       title: "시니어개발자",
     },
   });
-
-  const changeMentorName = (enterName) => {
-    let newName = person.mentor.name;
-    if (enterName == person.mentor.name) {
-      newName = prompt(`뭘로 바꿀래?`);
-      setPerson({
-        ...person,
-        mentor: {
-          ...person.mentor,
-          name: newName,
-        },
-      });
-    }
-  };
-  const changeMentorTitle = (enterTitle) => {
-    let newTitle = person.mentor.title;
-    if (enterTitle == person.mentor.title) {
-      newTitle = prompt(`뭘로 바꿀래?2`);
-      setPerson({
-        ...person,
-        mentor: {
-          ...person.mentor,
-          title: newTitle,
-        },
-      });
-    }
-  };
-
   return (
     <div>
       <h1>
@@ -48,7 +20,13 @@ export default function AppMentor(props) {
       <button
         onClick={() => {
           const name = prompt(`what's your mentor's name?`);
-          changeMentorName(name);
+          setPerson((person) => ({
+            ...person,
+            mentor: {
+              ...person.mentor,
+              name,
+            },
+          }));
         }}
       >
         멘토 이름 바꾸기
@@ -56,7 +34,13 @@ export default function AppMentor(props) {
       <button
         onClick={() => {
           const title = prompt(`what's your mentor's title?`);
-          changeMentorTitle(title);
+          setPerson((person) => ({
+            ...person,
+            mentor: {
+              ...person.mentor,
+              title,
+            },
+          }));
         }}
       >
         멘토 타이틀 바꾸기
