@@ -48,15 +48,15 @@ export default function AppMentor() {
       </button>
       <button
         onClick={() => {
-          const newName = prompt(`새로운 멘토의 이름은 무엇인가요?`);
-          const newTitle = prompt(`새로운 멘토의 직급은 무엇인가요?`);
+          const name = prompt(`새로운 멘토의 이름은 무엇인가요?`);
+          const title = prompt(`새로운 멘토의 직급은 무엇인가요?`);
           setPerson((person) => ({
             ...person,
             mentors: [
               ...person.mentors,
               {
-                name: newName,
-                title: newTitle,
+                name,
+                title,
               },
             ],
           }));
@@ -66,10 +66,10 @@ export default function AppMentor() {
       </button>
       <button
         onClick={() => {
-          const delName = prompt(`삭제하려는 멘토의 이름은 무엇인가요?`);
+          const name = prompt(`삭제하려는 멘토의 이름은 무엇인가요?`);
           setPerson((person) => ({
             ...person,
-            mentors: person.mentors.filter((m) => m.name !== delName),
+            mentors: person.mentors.filter((m) => m.name !== name),
           }));
         }}
       >
