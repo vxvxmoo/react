@@ -69,11 +69,7 @@ export default function AppMentor() {
           const delName = prompt(`삭제하려는 멘토의 이름은 무엇인가요?`);
           setPerson((person) => ({
             ...person,
-            mentors: person.mentors.map((mentor) => {
-              if (mentor.name == delName) {
-                return {};
-              } else return mentor;
-            }),
+            mentors: person.mentors.filter((m) => m.name !== delName),
           }));
         }}
       >
