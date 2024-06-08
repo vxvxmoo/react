@@ -11,6 +11,21 @@ export default function personReducer_2(person, action) {
         },
       ],
     };
+  } else if (action.type === "updated") {
+    const { prev, current } = action;
+    return {
+      ...person,
+      mentors: person.mentors.map((mentor) => {
+        if (mentor.name === action.prev) {
+          return {
+            name: action.current,
+            title: mentor.title,
+          };
+        } else {
+          return mentor;
+        }
+      }),
+    };
   } else {
     throw Error("Unknown action: " + action.type);
   }
