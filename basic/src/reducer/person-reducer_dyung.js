@@ -26,6 +26,14 @@ export default function personReducer_2(person, action) {
         }
       }),
     };
+  } else if (action.type === "deleted") {
+    const { name } = action;
+    return {
+      ...person,
+      mentors: person.mentors.filter((mentor) => {
+        return mentor.name !== action.name;
+      }),
+    };
   } else {
     throw Error("Unknown action: " + action.type);
   }
