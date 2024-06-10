@@ -12,17 +12,22 @@ export default function AppMentorsImmer() {
     });
   };
   const handleAdd = () => {
-    const name = prompt(`멘토의 이름은?`);
-    const title = prompt(`멘토의 직함은?`);
-    updatePerson((person) => person.mentors.push({ name, title }));
+    const name = prompt(`추가할 멘토의 이름은 무엇인가요?`);
+    const title = prompt(`추가할 멘토의 직급은 무엇인가요?`);
+
+    updatePerson((person) => {
+      person.mentors.push({ name, title });
+    });
   };
   const handleDelete = () => {
-    const name = prompt(`누구를 삭제하고 싶은가요?`);
+    const name = prompt(`삭제할 멘토의 이름은 무엇인가요?`);
+
     updatePerson((person) => {
       const index = person.mentors.findIndex((m) => m.name === name);
       person.mentors.splice(index, 1);
     });
   };
+
   return (
     <div>
       <h1>
