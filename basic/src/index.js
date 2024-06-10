@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import AppMentorsImmer from "./AppMentorsImmer";
+import AppMentorsImmer_dyung from "./AppMentorsImmer_dyung";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppMentorsImmer />
+    <AppMentorsImmer_dyung />
   </React.StrictMode>
 );
 
