@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import AppMentorsImmer_dyung from "./AppMentorsImmer_dyung";
+import AppForm from "./AppForm";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppMentorsImmer_dyung />
+    <AppForm />
   </React.StrictMode>
 );
 
