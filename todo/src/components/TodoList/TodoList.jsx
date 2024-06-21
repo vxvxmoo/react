@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddTodo from "../AddTodo/AddTodo";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([
@@ -14,18 +15,9 @@ export default function TodoList() {
     },
   ]);
 
-  const addTodo = (e) => {
-    e.preventDefault();
-    const todoText = e.target.todoText.value;
-
-    if (todoText.trim()) {
-      const newTodo = { id: "125", text: todoText, status: "active" };
-      setTodos([...todos, newTodo]);
-    }
-  };
-
-  const onReset = () => {
-    // input을 어떻게 초기화 해야될지를 모르겠음 ㅠㅠ
+  const handleAdd = (todo) => {
+    // 새로운 todo를 todos에 업데이트 해야한다.
+    setTodos([...todos, todo]);
   };
 
   return (
@@ -35,15 +27,7 @@ export default function TodoList() {
           <li key={item.id}>{item.text}</li>
         ))}
       </ul>
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
-          name="todoText"
-          placeholder="Add Todo"
-          value={todos.text}
-        ></input>
-        <button type="submit">Add</button>
-      </form>
+      <AddTodo onAdd={handleAdd} />
     </section>
   );
 }
