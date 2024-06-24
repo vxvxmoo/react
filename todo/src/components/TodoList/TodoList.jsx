@@ -11,16 +11,25 @@ export default function TodoList() {
   };
 
   const handleStatus = (todo) => {
-    const updateTodo = todoObj.map((todoItem) => {
-      if (todoItem.id === todo.id) {
-        return {
-          id: todo.id,
-          text: todo.text,
-          status: todo.status,
-        };
-      } else return todoItem;
-    });
-    setTodos(updateTodo);
+    setTodos(
+      todoObj.map((todoItem) => {
+        if (todoItem.id === todo.id) {
+          return {
+            id: todo.id,
+            text: todo.text,
+            status: todo.status,
+          };
+        } else return todoItem;
+      })
+    );
+  };
+
+  const handleDelete = (todo) => {
+    setTodos(
+      todoObj.filter((todoItem) => {
+        return todoItem.id !== todo.id;
+      })
+    );
   };
 
   return (
@@ -34,7 +43,7 @@ export default function TodoList() {
               text={item.text}
             />
             {item.text}
-            <DeleteTodo />
+            <DeleteTodo onDelete={handleDelete} id={item.id} />
           </li>
         ))}
       </ul>
