@@ -2,11 +2,13 @@ import React from "react";
 
 export default function UpdateStatus({ onUpdate, id, text }) {
   const handleClick = (e) => {
-    const checked = e.target.checked;
+    const chkBox = e.target;
 
-    if (checked) {
+    if (chkBox.checked) {
+      chkBox.parentNode.style.textDecoration = "line-through";
       onUpdate({ id, text, status: "done" });
     } else {
+      chkBox.parentNode.style.textDecoration = "";
       onUpdate({ id, text, status: "active" });
     }
   };
