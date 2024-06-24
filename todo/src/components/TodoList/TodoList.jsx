@@ -4,29 +4,23 @@ import DeleteTodo from "../DeleteTodo/DeleteTodo";
 import UpdateStatus from "../UpdateStatus/UpdateStatus";
 
 export default function TodoList() {
-  const [todos, setTodos] = useState([
-    {
-      id: "123",
-      text: "장보기",
-      status: "active",
-    },
-    {
-      id: "124",
-      text: "공부하기",
-      status: "active",
-    },
-  ]);
+  const [todos, setTodos] = useState(todoObj);
 
   const handleAdd = (todo) => {
     setTodos([...todos, todo]);
   };
 
   const handleStatus = (todo) => {
-    setTodos((todoItem) => {
+    const updateTodo = todoObj.map((todoItem) => {
       if (todoItem.id === todo.id) {
-        todoItem.status = todo.status;
-      }
+        return {
+          id: todo.id,
+          text: todo.text,
+          status: todo.status,
+        };
+      } else return todoItem;
     });
+    setTodos(updateTodo);
   };
 
   return (
@@ -48,3 +42,16 @@ export default function TodoList() {
     </section>
   );
 }
+
+const todoObj = [
+  {
+    id: "123",
+    text: "장보기",
+    status: "active",
+  },
+  {
+    id: "124",
+    text: "공부하기",
+    status: "active",
+  },
+];
