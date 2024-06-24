@@ -1,66 +1,41 @@
 import React, { useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
-import DeleteTodo from "../DeleteTodo/DeleteTodo";
-import UpdateStatus from "../UpdateStatus/UpdateStatus";
+import Todo from "../Todo/Todo";
 
 export default function TodoList() {
-  const [todos, setTodos] = useState(todoObj);
+  const [todos, setTodos] = useState([
+    {
+      id: "123",
+      text: "장보기",
+      status: "active",
+    },
+    {
+      id: "124",
+      text: "공부하기",
+      status: "active",
+    },
+  ]);
 
-  const handleAdd = (todo) => {
-    setTodos([...todos, todo]);
+  const handleAdd = (todo) => setTodos([...todos, todo]);
+  const handleUpdate = (updated) => {
+    setTodos(todos.map((t) => (t.id === updated.id ? updated : t)));
   };
-
-  const handleStatus = (todo) => {
-    setTodos(
-      todoObj.map((todoItem) => {
-        if (todoItem.id === todo.id) {
-          return {
-            id: todo.id,
-            text: todo.text,
-            status: todo.status,
-          };
-        } else return todoItem;
-      })
-    );
-  };
-
-  const handleDelete = (todo) => {
-    setTodos(
-      todoObj.filter((todoItem) => {
-        return todoItem.id !== todo.id;
-      })
-    );
-  };
+  const handleDelete = (deleted) =>
+    setTodos(todos.filter((t) => t.id !== deleted.id));
 
   return (
     <section>
       <ul>
         {todos.map((item) => (
-          <li key={item.id}>
-            <UpdateStatus
-              onUpdate={handleStatus}
-              id={item.id}
-              text={item.text}
-            />
-            {item.text}
-            <DeleteTodo onDelete={handleDelete} id={item.id} />
-          </li>
+          <Todo
+            key={item.id}
+            todo={item}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
         ))}
       </ul>
       <AddTodo onAdd={handleAdd} />
     </section>
   );
 }
-
-const todoObj = [
-  {
-    id: "123",
-    text: "장보기",
-    status: "active",
-  },
-  {
-    id: "124",
-    text: "공부하기",
-    status: "active",
-  },
-];
