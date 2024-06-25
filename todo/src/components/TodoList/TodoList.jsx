@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
+import TodoFilter from "../TodoFilter/TodoFilter";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([
@@ -23,8 +24,14 @@ export default function TodoList() {
   const handleDelete = (deleted) =>
     setTodos(todos.filter((t) => t.id !== deleted.id));
 
+  const handleList = (items) => {
+    const newTodos = items;
+    setTodos(newTodos);
+  };
+
   return (
     <section>
+      <TodoFilter todos={todos} onSetList={handleList} />
       <ul>
         {todos.map((item) => (
           <Todo
