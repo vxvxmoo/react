@@ -4,7 +4,7 @@ export default function TodoFilter({ todos, onSetList }) {
   const items = todos;
 
   const showAll = () => {
-    onSetList(items);
+    onSetList(todos);
   };
   const showOnlyActive = () => {
     onSetList(items.filter((item) => item.status === "active"));

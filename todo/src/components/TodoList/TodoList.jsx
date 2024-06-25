@@ -3,7 +3,7 @@ import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
 import TodoFilter from "../TodoFilter/TodoFilter";
 
-export default function TodoList() {
+export default function TodoList({ filter }) {
   const [todos, setTodos] = useState([
     {
       id: "123",
@@ -24,16 +24,11 @@ export default function TodoList() {
   const handleDelete = (deleted) =>
     setTodos(todos.filter((t) => t.id !== deleted.id));
 
-  const handleList = (items) => {
-    const newTodos = items;
-    setTodos(newTodos);
-  };
-
+  const filtered = getFilteredItems(todos, filter);
   return (
     <section>
-      <TodoFilter todos={todos} onSetList={handleList} />
       <ul>
-        {todos.map((item) => (
+        {filtered.map((item) => (
           <Todo
             key={item.id}
             todo={item}
@@ -45,4 +40,9 @@ export default function TodoList() {
       <AddTodo onAdd={handleAdd} />
     </section>
   );
+}
+
+function getFilteredItems(todos, filter) {
+  if (filter === "all") return todos;
+  return todos.filter((todo) => todo.status === filter);
 }
