@@ -1,15 +1,19 @@
 import "./App.css";
+import Home from "./pages/Home";
+import Videos from "./pages/Videos";
+import NotFounds from "./pages/NotFounds";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./pages/Root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <p>Home</p>,
-    errorElement: <p>Not Found💀</p>,
-  },
-  {
-    path: "/videos",
-    element: <p>Videos</p>,
+    element: <Root />,
+    errorElement: <NotFounds />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "/videos", element: <Videos /> },
+    ],
   },
 ]);
 
