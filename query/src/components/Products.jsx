@@ -3,7 +3,7 @@ import useProducts from "../hooks/use-products";
 
 export default function Products() {
   const [checked, setChecked] = useState(false);
-  const [loading, error, products] = useProducts({ salesOnly: true });
+  const [loading, error, products] = useProducts({ salesOnly: checked });
   const handleChange = () => setChecked((prev) => !prev);
 
   if (loading) return <p>Loading...</p>;
@@ -17,7 +17,7 @@ export default function Products() {
         value={checked}
         onChange={handleChange}
       />
-      <label htmlFor="checkbox">Show Only 🔥</label>
+      <label htmlFor="checkbox">Show Only 🔥 Sale</label>
       <ul>
         {products.map((product) => (
           <li key={product.id}>
